@@ -1,42 +1,41 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+//using System.Linq;
 
-public class PaperManager : MonoBehaviour
+public class PaperData : MonoBehaviour
 {
 
     int numberOfStampsToInstantiate;
-    public List<Vector2> stampingZonesLocations;
+    public Vector3[] stampingZonesLocations;
 
     void Start()
     {
-
+        GenerateNewDocument();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            print("bisoille");
-            GenerateNewDocument();
-        }
     }
 
 
     public void GenerateNewDocument()
     {
+        Debug.Log("bidouille");
+        numberOfStampsToInstantiate = 0;
 
         SetNumberOfStampsNeeded((documentsTypes)Random.Range(0, 3)); //between 0 and 2
+
         print("nbOfStamps = " + numberOfStampsToInstantiate);
+        stampingZonesLocations = new Vector3[numberOfStampsToInstantiate];
 
         for (int i = 0; i < numberOfStampsToInstantiate; i++)
         {
-            stampingZonesLocations.Add(SetNewStampingZoneLocation());
-            Debug.Log("location" + i + " = " + stampingZonesLocations[i]);
+            stampingZonesLocations[i] = SetNewStampingZoneLocation();
+            StampingZoneManager.instance.GenerateNewStampingZone(stampingZonesLocations[i], this.gameObject); // on génère les zone de tamponnages à chaque nouvelle position, enfants du document
         }
-        
+
     }
 
     public void SetNumberOfStampsNeeded(documentsTypes docType)
@@ -68,28 +67,23 @@ public class PaperManager : MonoBehaviour
         //Debug.Log("screen size = " + Screen.width + ", " + Screen.height + " ; and modified : " + (Screen.width *GameManager.instance.screenRatio) + ", " + (Screen.height* GameManager.instance.screenRatio));
 
         Vector3 newCoordinates = CreateNewCoordinates();
-        Debug.Log(newCoordinates);
 
         Vector3 newPosition = Vector3.zero;
 
-        if (stampingZonesLocations.Count >0)
+        if (stampingZonesLocations[0] != null)
         {
-            if (!CheckIfOverlapping(newCoordinates))
+            while (CheckIfOverlapping(newCoordinates))
             {
-                newPosition = new Vector3(newCoordinates.x * GameManager.instance.canvasRectTransform.localScale.x, newCoordinates.y * GameManager.instance.canvasRectTransform.localScale.y, 100);
+                newCoordinates = CreateNewCoordinates();
+                print("rerolling the coordinates");
             }
-            else
-            {
-                SetNewStampingZoneLocation();
-            }
+            newPosition = new Vector3(newCoordinates.x , newCoordinates.y, 100);
 
         }
         else
         {
-            newPosition = new Vector3(newCoordinates.x * GameManager.instance.canvasRectTransform.localScale.x, newCoordinates.y * GameManager.instance.canvasRectTransform.localScale.y, 100);
+            newPosition = new Vector3(newCoordinates.x, newCoordinates.y, 100);
         }
-
-        //Debug.Log("new position =" + newPosition);
 
         return newPosition;
     }
@@ -112,11 +106,11 @@ public class PaperManager : MonoBehaviour
 
         foreach (Vector3 location in stampingZonesLocations)
         {
-            if (newCoordinates.x <= location.x + 400 && newCoordinates.x >= location.x - 400)
+            if (newCoordinates.x <= location.x + 1 && newCoordinates.x >= location.x - 1)               // Les 1 sont des valeurs en dur, pratiques
             {
                 break;
             }
-            else if (newCoordinates.y <= location.x + 400 && newCoordinates.y >= location.x - 400)
+            else if (newCoordinates.y <= location.x + 1 && newCoordinates.y >= location.x - 1)
             {
                 break;
             }
@@ -126,7 +120,7 @@ public class PaperManager : MonoBehaviour
             }
         }
 
-        if (nbOfValidations == stampingZonesLocations.Count)
+        if (nbOfValidations == stampingZonesLocations.Length)
         {
             return false;
         }

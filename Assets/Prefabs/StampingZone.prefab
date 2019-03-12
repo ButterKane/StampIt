@@ -117,7 +117,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1636494618200267985}
-        m_MethodName: OnButtonClicked
+        m_MethodName: OnStamping
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -126,7 +126,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1636494618200267985
@@ -141,3 +141,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18781439ceb1c4d41877c55817c2ef67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nbOfStampsNeeded: 0
+  nbOfStampsDone: 0
+  isStampForbidden: 0

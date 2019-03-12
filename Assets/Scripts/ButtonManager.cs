@@ -7,7 +7,7 @@ public class ButtonManager : MonoBehaviour
     public void OnStartButtonClick()
     {
         GameManager.instance.gameStarted = true;
-        StampingZoneManager.instance.GenerateNewStampingZone();
+        //StampingZoneManager.instance.GenerateNewStampingZone();
         GameManager.instance.StartButton.SetActive(false);
     }
 }

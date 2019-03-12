@@ -9,8 +9,6 @@ public class StampingZoneManager : MonoBehaviour
 
     public Button StampingZone;
     public Button StampingZoneInstance;
-    public int numberOfStampsNeeded;
-    public int numberOfStampsDone;
     // ====== VARIABLES =======//
 
 
@@ -29,68 +27,41 @@ public class StampingZoneManager : MonoBehaviour
         }
     }
 
-    
-
     // ====== CLASS METHODS =======//
     public Vector3 GetButtonPosition()
     { 
         return Vector3.zero;
     }
 
-    public void GenerateNewStampingZone()
+    public void GenerateNewStampingZone(Vector3 newPosition, GameObject parent)
     {
-        if (StampingZoneInstance != null)
-        {
-            Destroy(StampingZoneInstance);
-        }
 
-        StampingZoneInstance = Instantiate(StampingZone, GameManager.instance.canvas.transform); // on fait appraitre la zone de tamponnage
+        StampingZoneInstance = Instantiate(StampingZone, parent.transform); // on fait appraitre la zone de tamponnage
 
-        StampingZoneInstance.onClick.AddListener(GameManager.instance.OnStampingZoneClicked);   // On référence l'event qu'on veut sur la nouvelle instance
+        StampingZoneInstance.transform.position = newPosition;    //On déplace la zone sur une nouvelle position
 
-        StampingZoneInstance.transform.position = GetNewLocation();    //On déplace la zone sur une nouvelle position
-
-        SetNumberOfStampsNeeded((stampTypes) Random.Range(0, 3));   // le Random se fait entre 0 et le nombre de membres de l'enum
+        StampingZoneInstance.GetComponent<StampingZoneBehaviour>().nbOfStampsNeeded = SetNumberOfStampsNeeded((stampTypes) Random.Range(0, 3));   // ici on limite à 3 pour ne pas introduire le forbidden
     }
 
 
-    public Vector3 GetNewLocation()
-    {
-        //Debug.Log("screen size = " + Screen.width + ", " + Screen.height + " ; and modified : " + (Screen.width *GameManager.instance.screenRatio) + ", " + (Screen.height* GameManager.instance.screenRatio));
 
-        float tempNewX = (Random.Range(200 * GameManager.instance.screenRatio, Screen.width - 200 * GameManager.instance.screenRatio));
-        float tempNewY = (Random.Range(200 * GameManager.instance.screenRatio, Screen.height - ((Screen.height/3)*2) * GameManager.instance.screenRatio));
-
-        //Debug.Log(tempNewX + ", " + tempNewY);
-
-        Vector3 newPosition = new Vector3(tempNewX  * GameManager.instance.canvasRectTransform.localScale.x, tempNewY * GameManager.instance.canvasRectTransform.localScale.y, 100);
-
-        //Debug.Log("new position =" + newPosition);
-
-        return newPosition;
-    }
-
-
-    public void SetNumberOfStampsNeeded(stampTypes stampType)
+    public int SetNumberOfStampsNeeded(stampTypes stampType)
     {
         switch ((int)stampType)
         {
             case 0:
                 print("stamp Type is singleStamp");
-                numberOfStampsNeeded = 1;
-                break;
+                return 1;
             case 1:
                 print("stamp Type is doubleStamp");
-                numberOfStampsNeeded = 2;
-                break;
+                return 2;
             case 2:
                 print("stamp Type is tripleStamp");
-                numberOfStampsNeeded = 3;
-                break;
+                return 3;
 
             default:
-                print("incorrect stamp, please check");
-                break;
+                print("incorrect stamp, please check (or forbidden stamp)");
+                return 0;
         }
         
     }

@@ -69,25 +69,10 @@ public class GameManager : MonoBehaviour
         }
         StampingManager.instance.stampList.Clear();
 
-        StampingZoneManager.instance.numberOfStampsDone = 0;
-
         print("valid Stamping");
     }
 
 
-
-    public void OnStampingZoneClicked()
-    {
-        StampingZoneManager.instance.numberOfStampsDone++;
-
-        if (StampingZoneManager.instance.numberOfStampsDone >= StampingZoneManager.instance.numberOfStampsNeeded) // si on a tout les tampons dont on a besoin
-        {
-            ValidStamping();    
-
-            Debug.Log("moving stamping zone");
-            StampingZoneManager.instance.GenerateNewStampingZone();
-        }
-    }
 
     private void GetToNewLocation()
     {

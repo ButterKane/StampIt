@@ -281,6 +281,7 @@ GameObject:
   - component: {fileID: 551946219}
   - component: {fileID: 551946218}
   - component: {fileID: 551946217}
+  - component: {fileID: 551946220}
   m_Layer: 5
   m_Name: Paper(button)
   m_TagString: Untagged
@@ -386,6 +387,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 551946215}
   m_CullTransparentMesh: 0
+--- !u!114 &551946220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551946215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4070edfc32cb9724f809a8098a684a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stampingZonesLocations: []
 --- !u!1 &656213918 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2282825994261748784, guid: 566efa273f88e6343acff524fe1502e5,
