@@ -17,14 +17,15 @@ public class StampingZoneBehaviour : MonoBehaviour
     {
         if(isStampForbidden)
         {
-            // fail
+            GameManager.instance.InvalidStamping();// fail
         }
         else
         {
             nbOfStampsDone++;
             if (nbOfStampsDone == nbOfStampsNeeded)
             {
-                // validate the stampingZone in the PaperData
+                GetComponentInParent<PaperData>().stampsValidated++;
+
             }
 
         }

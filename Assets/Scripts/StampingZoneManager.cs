@@ -40,7 +40,12 @@ public class StampingZoneManager : MonoBehaviour
 
         StampingZoneInstance.transform.position = newPosition;    //On déplace la zone sur une nouvelle position
 
-        StampingZoneInstance.GetComponent<StampingZoneBehaviour>().nbOfStampsNeeded = SetNumberOfStampsNeeded((stampTypes) Random.Range(0, 3));   // ici on limite à 3 pour ne pas introduire le forbidden
+        StampingZoneInstance.GetComponent<StampingZoneBehaviour>().nbOfStampsNeeded = SetNumberOfStampsNeeded((stampTypes) Random.Range(GameManager.instance.valuesOfStampTypeEnum.x - 1, GameManager.instance.valuesOfStampTypeEnum.y - 1));   // ici on limite à 3 pour ne pas introduire le forbidden
+
+        if (StampingZoneInstance.GetComponent<StampingZoneBehaviour>().nbOfStampsNeeded > 0) // si la zone instantiée n'est pas interdite
+        {
+            parent.GetComponent<PaperData>().stampsToValidate++;
+        }
     }
 
 

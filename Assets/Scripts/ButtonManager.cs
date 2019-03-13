@@ -8,6 +8,6 @@ public class ButtonManager : MonoBehaviour
     {
         GameManager.instance.gameStarted = true;
         //StampingZoneManager.instance.GenerateNewStampingZone();
-        GameManager.instance.StartButton.SetActive(false);
+        //GameManager.instance.StartButton.SetActive(false);
     }
 }

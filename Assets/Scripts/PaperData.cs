@@ -5,18 +5,26 @@ using UnityEngine;
 
 public class PaperData : MonoBehaviour
 {
-
     int numberOfStampsToInstantiate;
     public Vector3[] stampingZonesLocations;
+    public int stampsToValidate;
+    public int stampsValidated;
+    public bool documentDone;
 
-    void Start()
+    void Awake()
     {
+        gameObject.transform.localScale = gameObject.transform.localScale / GameManager.instance.resizingValues;
         GenerateNewDocument();
+        stampsValidated = 0;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        if (stampsValidated == stampsToValidate && !documentDone)
+        {
+            GameManager.instance.ValidStamping();
+            documentDone = true;
+        }
     }
 
 
@@ -25,7 +33,7 @@ public class PaperData : MonoBehaviour
         Debug.Log("bidouille");
         numberOfStampsToInstantiate = 0;
 
-        SetNumberOfStampsNeeded((documentsTypes)Random.Range(0, 3)); //between 0 and 2
+        SetNumberOfStampsNeeded((documentsTypes)Random.Range(GameManager.instance.valuesOfDocTypeEnum.x-1, GameManager.instance.valuesOfDocTypeEnum.y - 1)); //between 0 and 2
 
         print("nbOfStamps = " + numberOfStampsToInstantiate);
         stampingZonesLocations = new Vector3[numberOfStampsToInstantiate];
@@ -33,7 +41,7 @@ public class PaperData : MonoBehaviour
         for (int i = 0; i < numberOfStampsToInstantiate; i++)
         {
             stampingZonesLocations[i] = SetNewStampingZoneLocation();
-            StampingZoneManager.instance.GenerateNewStampingZone(stampingZonesLocations[i], this.gameObject); // on génère les zone de tamponnages à chaque nouvelle position, enfants du document
+            StampingZoneManager.instance.GenerateNewStampingZone(stampingZonesLocations[i], gameObject); // on génère les zone de tamponnages à chaque nouvelle position, enfants du document
         }
 
     }
@@ -93,7 +101,9 @@ public class PaperData : MonoBehaviour
         float tempNewX = (Random.Range(200 * GameManager.instance.screenRatio, Screen.width - 200 * GameManager.instance.screenRatio));
         float tempNewY = (Random.Range(200 * GameManager.instance.screenRatio, Screen.height - ((Screen.height / 3) * 2) * GameManager.instance.screenRatio));
 
-        Vector3 newCoordinates = new Vector3(tempNewX * GameManager.instance.canvasRectTransform.localScale.x, tempNewY * GameManager.instance.canvasRectTransform.localScale.y, 100);
+        Vector3 newCoordinates = new Vector3(tempNewX * GameManager.instance.canvasRectTransform.localScale.x / GameManager.instance.resizingValues.x, 
+                                            tempNewY * GameManager.instance.canvasRectTransform.localScale.y / GameManager.instance.resizingValues.y, 
+                                            100);
 
         return newCoordinates;
     }

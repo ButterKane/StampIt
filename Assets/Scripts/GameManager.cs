@@ -28,8 +28,15 @@ public class GameManager : MonoBehaviour
     public RectTransform canvasRectTransform;
 
     public float screenRatio;
+    public Vector2 resizingValues;
     public bool gameStarted;
-    public GameObject StartButton;
+    public GameObject DocumentPrefab;
+    public List<GameObject> DocumentsList = new List<GameObject>();
+    public GameObject NextDocument;
+    public int actualDocumentIndex;
+
+    public Vector2 valuesOfDocTypeEnum = new Vector2(1, 3);     // Encadre les elements dans lesquels on peut piocher les documents (permet une progression)
+    public Vector2 valuesOfStampTypeEnum = new Vector2(1, 4);   // Encadre les elements dans lesquels on peut piocher les types de tampons (permet une progression)
 
     // ====== MONOBEHAVIOUR METHODS =======//
 
@@ -43,16 +50,37 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this);
         }
+
+
+
         QualitySettings.vSyncCount = 0;
         canvasRectTransform = canvas.GetComponent<RectTransform>();
 
         float width = Screen.width;
         float height = Screen.height;
         screenRatio = width / height;
-        Debug.Log(Screen.width + ", " + Screen.height + ", " + screenRatio);
+
+        float resizingScreenX = width / canvasRectTransform.rect.width;      // 1080 = canvas width => plus facile que de récup le rect transform
+        float resizingScreenY = height / canvasRectTransform.rect.height;
+
+        resizingValues = new Vector2(resizingScreenX, resizingScreenY);
+
+        Debug.Log("Resizing = " + resizingScreenX + ", " + resizingScreenY );
+
+
 
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            DocumentsList.Add(Instantiate(DocumentPrefab, canvas.transform));
+            NextDocument = (Instantiate(DocumentPrefab, canvas.transform));
+            NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
+        }
+    }
     // ====== CLASS METHODS =======//
 
     /// <summary>
@@ -60,27 +88,50 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void ValidStamping()
     {
-        ScoreManager.instance.IncreaseScore(1);
-        // ici "transférer" les images sur le document tamponné (ça fera un effet de ouf)
-
-        foreach(Image stamp in StampingManager.instance.stampList) // on "supprime" les tampons posés sur le document jusque-là 
-        {
-            Destroy(stamp);
-        }
-        StampingManager.instance.stampList.Clear();
-
         print("valid Stamping");
+
+        ScoreManager.instance.IncreaseScore(1);
+
+        StartCoroutine(TransitionToNewDocument());
+
     }
-
-
-
-    private void GetToNewLocation()
+    public void InvalidStamping()
     {
-        
+
     }
+
+
+    public IEnumerator TransitionToNewDocument()
+    {
+        Vector3 startPosition = DocumentsList[actualDocumentIndex].transform.position;
+        Vector3 endPosition = startPosition + Vector3.right*6;
+
+        Vector3 startPosition2 = NextDocument.transform.position;
+        Vector3 endPosition2 = startPosition2 + Vector3.right *6;
+
+        float t = 0;
+        while (t < 1)
+        {
+            DocumentsList[actualDocumentIndex].transform.position = Vector3.Lerp(startPosition, endPosition, t);
+            NextDocument.transform.position = Vector3.Lerp(startPosition2, endPosition2, t);
+            t += Time.deltaTime;
+            yield return null;
+        }
+        DocumentsList[actualDocumentIndex].transform.position = endPosition;
+        NextDocument.transform.position = endPosition2;
+
+
+        DocumentsList.Add(NextDocument);
+        actualDocumentIndex++;
+
+        NextDocument = (Instantiate(DocumentPrefab, canvas.transform));
+        NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
+    }
+
 
     public void ReturnToMenu()
     {
+
     }
 
     public void GameEnded()

@@ -40,10 +40,10 @@ public class StampingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.instance.gameStarted)
-        {
+        //if (GameManager.instance.gameStarted)
+        //{
             publicTouchingBool = CheckIfTouching();
-        }
+        //}
     }
 
 
@@ -57,7 +57,7 @@ public class StampingManager : MonoBehaviour
             Vector2 touchPos = touch.position;
             if (touch.phase == TouchPhase.Began && canTouch)
             {
-                Image stampInstance = Instantiate(stamp, GameManager.instance.canvas.transform);
+                Image stampInstance = Instantiate(stamp, GameManager.instance.DocumentsList[GameManager.instance.actualDocumentIndex].transform);
                 stampList.Add(stampInstance);
                 //stampInstance.transform.position = new Vector2( touchPos.x, touchPos.y); //Marche avec Canvas en Overlay
 
