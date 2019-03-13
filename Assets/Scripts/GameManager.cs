@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     public GameObject DocumentPrefab;
     public List<GameObject> DocumentsList = new List<GameObject>();
+    public Sprite[] DocumentsApparence;
     public GameObject NextDocument;
     public int actualDocumentIndex;
 
@@ -71,14 +72,18 @@ public class GameManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        DocumentsList.Add(Instantiate(DocumentPrefab, canvas.transform));
+        NextDocument = (Instantiate(DocumentPrefab, canvas.transform));
+        NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DocumentsList.Add(Instantiate(DocumentPrefab, canvas.transform));
-            NextDocument = (Instantiate(DocumentPrefab, canvas.transform));
-            NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
         }
     }
     // ====== CLASS METHODS =======//

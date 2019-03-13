@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2282825994261748799}
   - component: {fileID: 427323175}
   - component: {fileID: 605330372}
+  - component: {fileID: 656213919}
   m_Layer: 0
   m_Name: ====MANAGERS====
   m_TagString: Untagged
@@ -48,8 +49,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
   canvasRectTransform: {fileID: 0}
-  StampingZoneInstance: {fileID: 0}
   screenRatio: 0
+  resizingValues: {x: 0, y: 0}
+  gameStarted: 0
+  DocumentPrefab: {fileID: 3404478145758842937, guid: 3bb073940a73a87429bcdac4f37ce69a,
+    type: 3}
+  DocumentsList: []
+  DocumentsApparence:
+  - {fileID: 21300000, guid: 3a4ee345eb1732348a6237d9b739821e, type: 3}
+  - {fileID: 21300000, guid: c37ff35bc2ec7ba4dad678a61881b239, type: 3}
+  - {fileID: 21300000, guid: a4666d41ebc73cd4e96a2a6af099d13d, type: 3}
+  NextDocument: {fileID: 0}
+  actualDocumentIndex: 0
+  valuesOfDocTypeEnum: {x: 1, y: 3}
+  valuesOfStampTypeEnum: {x: 1, y: 4}
 --- !u!114 &2282825994261748799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,6 +78,7 @@ MonoBehaviour:
   touchingPos: {x: 0, y: 0}
   publicTouchingBool: 0
   stamp: {fileID: 4759938223603241078, guid: e80cc2f149c7abc4487c8a3a9bbbae7d, type: 3}
+  stampList: []
 --- !u!114 &427323175
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,3 +107,15 @@ MonoBehaviour:
   StampingZone: {fileID: 3548643458756273473, guid: 3bee8ca20952a0649b3b6de08716b1de,
     type: 3}
   StampingZoneInstance: {fileID: 0}
+--- !u!114 &656213919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2282825994261748784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbb166b3b5d6e24db7ff485a412b48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -269,24 +269,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &656213918 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2282825994261748784, guid: 566efa273f88e6343acff524fe1502e5,
-    type: 3}
-  m_PrefabInstance: {fileID: 2282825995223035847}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &656213919
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 656213918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbbb166b3b5d6e24db7ff485a412b48c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &904991090
 GameObject:
   m_ObjectHideFlags: 0
@@ -547,17 +529,6 @@ PrefabInstance:
       propertyPath: canvas
       value: 
       objectReference: {fileID: 468829971}
-    - target: {fileID: 2282825994261748798, guid: 566efa273f88e6343acff524fe1502e5,
-        type: 3}
-      propertyPath: StartButton
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 2282825994261748798, guid: 566efa273f88e6343acff524fe1502e5,
-        type: 3}
-      propertyPath: DocumentPrefab
-      value: 
-      objectReference: {fileID: 3404478145758842937, guid: 3bb073940a73a87429bcdac4f37ce69a,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 566efa273f88e6343acff524fe1502e5, type: 3}
 --- !u!1001 &4326838706612655739

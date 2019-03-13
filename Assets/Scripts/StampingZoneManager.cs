@@ -55,17 +55,17 @@ public class StampingZoneManager : MonoBehaviour
         switch ((int)stampType)
         {
             case 0:
-                print("stamp Type is singleStamp");
+                //print("stamp Type is singleStamp");
                 return 1;
             case 1:
-                print("stamp Type is doubleStamp");
+                //print("stamp Type is doubleStamp");
                 return 2;
             case 2:
-                print("stamp Type is tripleStamp");
+                //print("stamp Type is tripleStamp");
                 return 3;
 
             default:
-                print("incorrect stamp, please check (or forbidden stamp)");
+                //print("incorrect stamp, please check (or forbidden stamp)");
                 return 0;
         }
         
