@@ -8,6 +8,7 @@ public class IconFadeManager : MonoBehaviour
 
     public GameObject child;
     public int levelNumber;
+    public int levelID;
     Button button;
     Image image;
     RectTransform rectTransform;
@@ -52,5 +53,11 @@ public class IconFadeManager : MonoBehaviour
             button.interactable = true;
             image.color = new Color(image.color.r, image.color.g, image.color.b, 1);
         }
+    }
+
+    public void LoadLevel()
+    {
+        transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+        GameManager.instance.StartLevel(levelID);
     }
 }

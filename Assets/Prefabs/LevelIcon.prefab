@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 3809966222262417819}
   - component: {fileID: 2472313878462178424}
   - component: {fileID: 3998174726858135539}
+  - component: {fileID: 8633799433949719476}
   m_Layer: 5
   m_Name: LevelIcon
   m_TagString: Untagged
@@ -170,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   child: {fileID: 2621171076327486269}
   levelNumber: 0
+  levelID: 0
 --- !u!114 &3998174726858135539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,10 +207,34 @@ MonoBehaviour:
     m_HighlightedTrigger: Highlighted
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 3809966222262417819}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8633799433949719476}
+        m_MethodName: OnLevelClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &8633799433949719476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6044674545140865651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbb166b3b5d6e24db7ff485a412b48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelScreenInstance: {fileID: 0}

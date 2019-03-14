@@ -562,6 +562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbbb166b3b5d6e24db7ff485a412b48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelScreenInstance: {fileID: 0}
 --- !u!114 &641100169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -577,9 +578,9 @@ MonoBehaviour:
   actual_level: 0
   level_data_list:
   - {fileID: 11400000, guid: 49215a40f3a33604cb7c2aa5ce585fc3, type: 2}
-  - {fileID: 11400000, guid: 19a4e8f827127ca43acff6a828ecf3ac, type: 2}
-  - {fileID: 11400000, guid: c2e19703ad38dc045a532cb4e6995767, type: 2}
-  - {fileID: 11400000, guid: 1d2cd0605cc925743824925c3ca280e5, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &641100174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,6 +838,12 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 9125469236817722097}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2144975459 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8345339253154701290, guid: 9c38be29c321f89458407616b9243072,
+    type: 3}
+  m_PrefabInstance: {fileID: 5799389158003366424}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1359309770990064593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -921,6 +928,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LevelsScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345339253154701290, guid: 9c38be29c321f89458407616b9243072,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5571966189384508269, guid: 9c38be29c321f89458407616b9243072,
         type: 3}
@@ -1041,11 +1053,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartScreen
       objectReference: {fileID: 0}
-    - target: {fileID: 9125469237935134721, guid: 5c250c74f9f4347498506e7218760381,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 9125469237935134720, guid: 5c250c74f9f4347498506e7218760381,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1151,10 +1158,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 9125469237935134723, guid: 5c250c74f9f4347498506e7218760381,
+    - target: {fileID: 7518508559270894020, guid: 5c250c74f9f4347498506e7218760381,
         type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      propertyPath: levelScreenInstance
       value: 
-      objectReference: {fileID: 641100168}
+      objectReference: {fileID: 2144975459}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c250c74f9f4347498506e7218760381, type: 3}

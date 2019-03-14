@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf041d190f604434d841cbc2babc38bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parent: {fileID: 8345339253154701290}
   lockedLevelSprite: {fileID: 21300000, guid: 81657ad75808f0e47beaa112b8e80eca, type: 3}
   iconPrefab: {fileID: 6044674545140865651, guid: 3871f240bc0faed4398b343ee29f1a98,
     type: 3}
@@ -136,13 +137,14 @@ GameObject:
   - component: {fileID: 5571966189384508269}
   - component: {fileID: 4407060106255665681}
   - component: {fileID: 8675578609428420589}
+  - component: {fileID: 6613974686643505777}
   m_Layer: 5
   m_Name: LevelsScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5571966189384508269
 RectTransform:
   m_ObjectHideFlags: 0
@@ -201,3 +203,16 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &6613974686643505777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8345339253154701290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbb166b3b5d6e24db7ff485a412b48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelScreenInstance: {fileID: 0}

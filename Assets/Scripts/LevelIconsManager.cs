@@ -18,11 +18,11 @@ public class LevelIconsManager : MonoBehaviour
     
     void Update()
     {
-        if (Input.touchCount > 0)
+        /*if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             gameObject.GetComponent<RectTransform>().localPosition += new Vector3(0, touch.deltaPosition.y, 0);
-        }
+        }*/
     }
 
     void SpawnIcons()
@@ -45,6 +45,7 @@ public class LevelIconsManager : MonoBehaviour
                     sameLevelStreak = 1;
                 }
                 instance.GetComponent<IconFadeManager>().levelNumber = sameLevelStreak;
+                instance.GetComponent<IconFadeManager>().levelID = levels.Key;
                 instance.GetComponent<Image>().sprite = levels.Value.level_icon;
             }
             else
