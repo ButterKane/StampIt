@@ -5,14 +5,30 @@ using UnityEngine.UI;
 
 public class SuccessScreenManager : MonoBehaviour
 {
+    public static SuccessScreenManager instance;
+
+
     public List<GameObject> successScreenElements;
     public Image fadeRenderer;
     public Text text;
     public float fadeMaxAlpha = 120f;
     public float timeToFade = 1f;
     public float timeBeforeFade = 2.5f;
+    void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
 
-    public void OnSuccess(int Score)
+
+
+        public void OnSuccess(int Score)
     {
         for (int i = 0; i < successScreenElements.Count; i++)
         {

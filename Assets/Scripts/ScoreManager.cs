@@ -25,6 +25,7 @@ public class ScoreManager : MonoBehaviour
     public  int                     fever_amount_limit                      = 6;
     public  int                     actual_score_multiplier                 = 1;
     public  int                     maximum_score_obtainable                ;
+    public GameObject fever_fx;
 
 [Space(10)][Header("Gameplay")]
     public  float                   fast_time_duration_per_stampZone        = 0.50f;
@@ -120,7 +121,11 @@ public class ScoreManager : MonoBehaviour
     {
         UpdateMaximumScore();
         IncreaseScore( CalculateFinalScoreGained(document_score_gain) );
-        if(is_in_fast_time == true) { IncreaseFever(); }
+        if(is_in_fast_time == true)
+        {
+            IncreaseFever();
+            fever_fx = Instantiate(GameManager.instance.FeverFX, GameManager.instance.canvas.transform);
+        }
         return;
     }
 
@@ -190,6 +195,7 @@ public class ScoreManager : MonoBehaviour
     public void StartFeverFeedback()
     {
         Debug.Log("Entering FEVER time");
+        
         return;
     }
 

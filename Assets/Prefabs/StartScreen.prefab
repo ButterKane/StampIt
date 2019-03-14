@@ -308,6 +308,7 @@ GameObject:
   - component: {fileID: 9125469237935134725}
   - component: {fileID: 9125469237935134722}
   - component: {fileID: 9125469237935134723}
+  - component: {fileID: 7518508559270894020}
   m_Layer: 5
   m_Name: StartScreen
   m_TagString: Untagged
@@ -415,7 +416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7518508559270894020}
         m_MethodName: OnStartButtonClick
         m_Mode: 1
         m_Arguments:
@@ -428,3 +429,15 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &7518508559270894020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9125469237935134721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbbb166b3b5d6e24db7ff485a412b48c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

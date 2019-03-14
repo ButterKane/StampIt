@@ -40,10 +40,10 @@ public class StampingManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (GameManager.instance.gameStarted)
-        //{
+        if (GameManager.instance.gamePlaying)
+        {
             publicTouchingBool = CheckIfTouching();
-        //}
+        }
     }
 
 
@@ -73,7 +73,6 @@ public class StampingManager : MonoBehaviour
                 canTouch = true;
             }
         }
-
         return isTouching;
     }
 }
