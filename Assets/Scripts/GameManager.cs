@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
     public Vector2 valuesOfDocTypeEnum = new Vector2(1, 3);     // Encadre les elements dans lesquels on peut piocher les documents (permet une progression)
     public Vector2 valuesOfStampTypeEnum = new Vector2(1, 4);   // Encadre les elements dans lesquels on peut piocher les types de tampons (permet une progression)
 
+    private Vector3 locationForActualDoc = new Vector3(0, -280, 0);
+
     // ====== MONOBEHAVIOUR METHODS =======//
 
     void Awake()
@@ -66,22 +68,13 @@ public class GameManager : MonoBehaviour
         float height = Screen.height;
         screenRatio = width / height;
 
-        float resizingScreenX = width / canvasRectTransform.rect.width;      
-        float resizingScreenY = height / canvasRectTransform.rect.height;
-
-        resizingValues = new Vector2(resizingScreenX, resizingScreenY);
-
-        Debug.Log("Resizing = " + resizingScreenX + ", " + resizingScreenY );
-
-
-
     }
 
     private void Start()
     {
         DocumentsList.Add(Instantiate(DocumentPrefabs[0], canvas.transform));
         NextDocument = (Instantiate(DocumentPrefabs[1], canvas.transform));
-        NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
+        NextDocument.transform.position = new Vector3 (NextDocument.transform.position.x - (9.7f * screenRatio), NextDocument.transform.position.y-(6f * screenRatio), NextDocument.transform.position.z);
     }
 
     private void Update()
@@ -115,10 +108,10 @@ public class GameManager : MonoBehaviour
     public IEnumerator TransitionToNewDocument()
     {
         Vector3 startPosition = DocumentsList[actualDocumentIndex].transform.position;
-        Vector3 endPosition = startPosition + Vector3.right*6;
+        Vector3 endPosition = startPosition + (Vector3.right * 15f) * screenRatio;
 
         Vector3 startPosition2 = NextDocument.transform.position;
-        Vector3 endPosition2 = startPosition2 + Vector3.right *6;
+        Vector3 endPosition2 = new Vector3(NextDocument.transform.position.x + (9.7f * screenRatio), NextDocument.transform.position.y + (6f * screenRatio), NextDocument.transform.position.z);
 
         float t = 0;
         while (t < 1)
@@ -136,8 +129,9 @@ public class GameManager : MonoBehaviour
         actualDocumentIndex++;
 
         NextDocument = (Instantiate(DocumentPrefabs[2], canvas.transform));
-        NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
+        NextDocument.transform.position = new Vector3(NextDocument.transform.position.x - (9.7f * screenRatio), NextDocument.transform.position.y - (6f * screenRatio), NextDocument.transform.position.z);
     }
+
 
 
     public void ReturnToMenu()

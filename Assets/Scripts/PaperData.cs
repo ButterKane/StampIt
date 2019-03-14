@@ -7,20 +7,27 @@ using UnityEngine.UI;
 public class PaperData : MonoBehaviour
 {
     public bool documentDone;
-
+    private RectTransform rect; 
     public DocumentClass documentData;
+
+    private Vector3 BoundHLLocation;
+    private Vector3 BoundHRLocation;
+    private Vector3 BoundBLLocation;
+    private Vector3 BoundBRLocation;
 
     void Awake()
     {
         documentData.stampingZonesLocations = new List<Vector3>();
-        gameObject.transform.localScale = gameObject.transform.localScale / GameManager.instance.resizingValues;
+        //gameObject.transform.localScale = gameObject.transform.localScale / GameManager.instance.resizingValues;
         documentData.stampZonesValidated = 0;
-
+        rect = gameObject.GetComponent<RectTransform>();
         this.gameObject.GetComponent<Image>().sprite = documentData.DocumentApparence;
 
-        GenerateNewDocument();
-    }
+        InitializeBounds();
 
+    GenerateNewDocument();
+    }
+    
     private void Update()
     {
         if (documentData.stampZonesValidated == documentData.stampZonesToValidate && !documentDone)
@@ -70,12 +77,19 @@ public class PaperData : MonoBehaviour
 
     public Vector3 CreateNewCoordinates()
     {
-        float tempNewX = (Random.Range(350f * GameManager.instance.screenRatio, (float)Screen.width - 400f * GameManager.instance.screenRatio));
-        float tempNewY = (Random.Range(400f * GameManager.instance.screenRatio, (float)Screen.height - (((float)Screen.height / 3f) * 2f) * GameManager.instance.screenRatio));
+        float tempNewX = Random.Range(BoundHLLocation.x, BoundHRLocation.x);
+        float tempNewY = Random.Range(BoundBLLocation.y, BoundBRLocation.y);
 
-        Vector3 newCoordinates = new Vector3(tempNewX * GameManager.instance.canvasRectTransform.localScale.x / GameManager.instance.resizingValues.x, 
-                                            tempNewY * GameManager.instance.canvasRectTransform.localScale.y / GameManager.instance.resizingValues.y, 
-                                            100f);
+        //float tempNewX = Random.Range((rect.rect.width / 1080) * 200f * GameManager.instance.screenRatio, (((float)Screen.width - ((float)Screen.width / 1080) * 100f)) * GameManager.instance.screenRatio);
+        //float tempNewY = Random.Range(((float)Screen.height / 1920) * 200f * GameManager.instance.screenRatio, ((float)Screen.height - (((float)Screen.height / 3f) * 1f)) * GameManager.instance.screenRatio);
+
+        ////Vector3 newCoordinates = new Vector3(tempNewX * GameManager.instance.canvasRectTransform.localScale.x / GameManager.instance.resizingValues.x, 
+        //                                    tempNewY * GameManager.instance.canvasRectTransform.localScale.y / GameManager.instance.resizingValues.y, 
+        //                                    100f);
+
+        //Vector3 newCoordinates = new Vector3(tempNewX * GameManager.instance.canvasRectTransform.localScale.x, tempNewY * GameManager.instance.canvasRectTransform.localScale.y, 100f);
+
+        Vector3 newCoordinates = new Vector3(tempNewX, tempNewY, 100f);
         return newCoordinates;
     }
 
@@ -87,9 +101,9 @@ public class PaperData : MonoBehaviour
 
         for (int i = 0; i < documentData.stampingZonesLocations.Count; i++)
         {
-            if (newCoordinates.x <= documentData.stampingZonesLocations[i].x + 1f && newCoordinates.x >= documentData.stampingZonesLocations[i].x - 1f)               // Les 1 sont des valeurs en dur, pratiques
+            if (newCoordinates.x <= documentData.stampingZonesLocations[i].x + 1.2f && newCoordinates.x >= documentData.stampingZonesLocations[i].x - 1.2f)               // Les 1 sont des valeurs en dur, pratiques
             {
-                if (newCoordinates.y <= documentData.stampingZonesLocations[i].y + 1f && newCoordinates.y >= documentData.stampingZonesLocations[i].y - 1f)
+                if (newCoordinates.y <= documentData.stampingZonesLocations[i].y + 1.2f && newCoordinates.y >= documentData.stampingZonesLocations[i].y - 1.2f)
                 {
                     break;
                 }
@@ -109,6 +123,23 @@ public class PaperData : MonoBehaviour
         {
             return true;
         }
+    }
+
+    private void InitializeBounds()
+    {
+        GameObject firstChild = gameObject.transform.GetChild(0).gameObject;
+
+        firstChild.transform.localScale = new Vector3(GameManager.instance.screenRatio, GameManager.instance.screenRatio, GameManager.instance.screenRatio);
+
+        GameObject BoundHL = firstChild.transform.GetChild(0).gameObject;
+        GameObject BoundHR = firstChild.transform.GetChild(0).gameObject;
+        GameObject BoundBL = firstChild.transform.GetChild(0).gameObject;
+        GameObject BoundBR = firstChild.transform.GetChild(0).gameObject;
+
+        BoundHLLocation = BoundHL.GetComponent<RectTransform>().transform.position;
+        BoundHRLocation = BoundHR.GetComponent<RectTransform>().transform.position;
+        BoundBLLocation = BoundBL.GetComponent<RectTransform>().transform.position;
+        BoundBRLocation = BoundBR.GetComponent<RectTransform>().transform.position;
     }
 
 }
