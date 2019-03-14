@@ -214,7 +214,7 @@ public class ScoreManager : MonoBehaviour
     public void StartFeverFeedback()
     {
         Debug.Log("Entering FEVER time");
-        fever_fx.SetActive(true); 
+        //fever_fx.SetActive(true); 
         txt_fever_display.enabled = true;
         
         return;
@@ -226,7 +226,7 @@ public class ScoreManager : MonoBehaviour
     public void StopFeverFeedback()
     {
         Debug.Log("Quitting FEVER time");
-        fever_fx.SetActive(false);
+        //fever_fx.SetActive(false);
         txt_fever_display.enabled = false;
 
         return;

@@ -11,7 +11,7 @@ public class StampingManager : MonoBehaviour
     private Camera mainCamera;
 
     private Touch touch;
-    private bool canTouch;
+    public bool canTouch;
 
     public Vector2 touchingPos;
     public bool publicTouchingBool;

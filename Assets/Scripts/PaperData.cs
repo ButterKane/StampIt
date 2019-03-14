@@ -41,6 +41,7 @@ public class PaperData : MonoBehaviour
         ScoreManager.instance.fever_amount = 0;
         ScoreManager.instance.StopFeverFeedback();
         ScoreManager.instance.score -= GameManager.instance.scorePerDoc;
+        ScoreManager.instance.txt_score_display.text = ScoreManager.instance.score.ToString();
     }
 
     public void GenerateNewDocument()

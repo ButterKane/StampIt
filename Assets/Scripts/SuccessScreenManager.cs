@@ -10,6 +10,8 @@ public class SuccessScreenManager : MonoBehaviour
 
     public List<GameObject> successScreenElements;
     public GameObject successStamp;
+    public GameObject Nextlevel;
+    public GameObject LevelsButton;
     public Sprite goodSprite;
     public Sprite greatSprite;
     public Sprite superSprite;
@@ -78,5 +80,7 @@ public class SuccessScreenManager : MonoBehaviour
         }
         text.color = new Color(1, 1, 1, 1);
         fadeRenderer.color = new Color(0, 0, 0, fadeMaxAlpha / 255f);
+        Nextlevel.SetActive(true);
+        LevelsButton.SetActive(true);
     }
 }

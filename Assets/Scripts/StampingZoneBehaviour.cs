@@ -22,7 +22,9 @@ public class StampingZoneBehaviour : MonoBehaviour
     {
         if (StampData.nbOfStampsNeeded == 0)
         {
-            GameManager.instance.InvalidStamping();// fail
+            ScoreManager.instance.fever_amount = 0;
+            ScoreManager.instance.StopFeverFeedback();
+            ScoreManager.instance.score -= (GameManager.instance.scorePerDoc * 3);
         }
         else
         {

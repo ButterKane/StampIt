@@ -24,4 +24,11 @@ public class ButtonsBehaviours : MonoBehaviour
         gameObject.GetComponent<IconFadeManager>().LoadLevel();
     }
 
+    public void OnNextLevelClick()
+    {
+        GameManager.instance.Cleargame();
+        LevelsManager.instance.MoveToNextLevel();
+        GameManager.instance.StartLevel(LevelsManager.instance.actual_level);
+    }
+
 }

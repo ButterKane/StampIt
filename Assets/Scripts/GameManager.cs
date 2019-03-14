@@ -98,18 +98,19 @@ public class GameManager : MonoBehaviour
         gamePlaying = true;
         StartLevel(0);
 
-        GetDocumentToGenerate();
-        actualDocumentIndex = 0;
-
-        DocumentsList.Add(Instantiate(DocumentPrefabs[Random.Range(0, listOfDocsForLevel.Count-1)], canvas.transform));
-
-        NextDocument = (Instantiate(DocumentPrefabs[Random.Range(0, listOfDocsForLevel.Count - 1)], canvas.transform));
-        NextDocument.transform.position = new Vector3(NextDocument.transform.position.x - (9.7f * screenRatio), NextDocument.transform.position.y - (6f * screenRatio), NextDocument.transform.position.z);
+        
     }
 
     public void Cleargame()
     {
-
+        foreach(GameObject doc in DocumentsList)
+        {
+            Destroy(doc);
+        }
+        DocumentsList.Clear();
+        NextDocument = null;
+        isLastDocument = false;
+        actualDocumentIndex = 0;
     }
 
     private void Update()
@@ -137,14 +138,12 @@ public class GameManager : MonoBehaviour
         }
 
     }
-    public void InvalidStamping()
-    {
 
-    }
 
 
     public IEnumerator TransitionToNewDocument()
     {
+        StampingManager.instance.canTouch = false;
         Vector3 startPosition = DocumentsList[actualDocumentIndex].transform.position;
         Vector3 endPosition = startPosition + (Vector3.right * 15f) * screenRatio;
 
@@ -190,7 +189,8 @@ public class GameManager : MonoBehaviour
         {
             isLastDocument = true;
         }
-        
+        StampingManager.instance.canTouch = true;
+
     }
 
     /// <summary>
@@ -203,6 +203,14 @@ public class GameManager : MonoBehaviour
         InitialiseLevel();
 
         game_state = enum_GameState.ingame;
+
+        GetDocumentToGenerate();
+        actualDocumentIndex = 0;
+
+        DocumentsList.Add(Instantiate(DocumentPrefabs[Random.Range(0, listOfDocsForLevel.Count - 1)], canvas.transform));
+
+        NextDocument = (Instantiate(DocumentPrefabs[Random.Range(0, listOfDocsForLevel.Count - 1)], canvas.transform));
+        NextDocument.transform.position = new Vector3(NextDocument.transform.position.x - (9.7f * screenRatio), NextDocument.transform.position.y - (6f * screenRatio), NextDocument.transform.position.z);
 
         return;
     }
