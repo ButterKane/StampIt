@@ -2,6 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum enum_LevelRating
+{
+    None,
+    Good,
+    Great,
+    Super,
+    Perfect
+}
+
 public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager instance;
@@ -15,6 +24,13 @@ public class ScoreManager : MonoBehaviour
     public  int                     fever_amount                            ;
     public  int                     fever_amount_limit                      = 6;
     public  int                     actual_score_multiplier                 = 1;
+    public  int                     maximum_score_obtainable                ;
+
+[Space(10)][Header("Gameplay")]
+    public  float                   fast_time_duration_per_stampZone        = 0.50f;
+    public  float                   rating_min_percent_great                = 0.20f;
+    public  float                   rating_min_percent_super                = 0.35f;
+    public  float                   rating_min_percent_perfect              = 0.70f;
 
 // = = =
 
@@ -93,8 +109,18 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public void OnDocumentComplete(int document_score_gain)
     {
+        UpdateMaximumScore();
         IncreaseScore( CalculateFinalScoreGained(document_score_gain) );
-        IncreaseFever();
+        if(is_in_fast_time == true) { IncreaseFever(); }
+        return;
+    }
+
+    /// <summary>
+    /// Updates the maximum obtainable score value, which is used to calculate end of level rating. 
+    /// </summary>
+    public void UpdateMaximumScore()
+    {
+        maximum_score_obtainable += GameManager.instance.DocumentsList[GameManager.instance.actualDocumentIndex].GetComponent<PaperData>().documentData.localScore * (1+ Mathf.Min(GameManager.instance.actualDocumentIndex, 6));
         return;
     }
 
@@ -183,7 +209,6 @@ public class ScoreManager : MonoBehaviour
     public int CalculateFinalScoreGained(int base_score_gained)
     {
         int calculated_score;
-
         calculated_score = base_score_gained * actual_score_multiplier;
 
         Debug.Log("Gain <b>" + calculated_score + "</b> score");
@@ -195,8 +220,39 @@ public class ScoreManager : MonoBehaviour
     /// </summary>
     public float GetActualDocumentFastTimeDuration()
     {
+        float calculated_value;
+        calculated_value = 1 + ( GameManager.instance.DocumentsList[GameManager.instance.actualDocumentIndex].GetComponent<PaperData>().documentData.stampZonesToValidate * fast_time_duration_per_stampZone );
+        
+        return calculated_value;
+    }
+    
+    /// <summary>
+    /// Returns a specific rating for the current level depending on player score compared to the maximum obtainable score. 
+    /// </summary>
+    public enum_LevelRating CalculateLevelRating()
+    {
+        // good
+        if (score <= maximum_score_obtainable * rating_min_percent_great)
+        {
+            return enum_LevelRating.Good;
+        }
+        // great
+        else if ( score <= maximum_score_obtainable * rating_min_percent_super)
+        {
+            return enum_LevelRating.Great;
+        }
+        // super
+        else if (score <= maximum_score_obtainable * rating_min_percent_perfect)
+        {
+            return enum_LevelRating.Super;
+        }
+        // perfect
+        else if (score <= maximum_score_obtainable)
+        {
+            return enum_LevelRating.Perfect;
+        }
 
-        return 1.00f;
+        return enum_LevelRating.None;
     }
 
 // = = =
