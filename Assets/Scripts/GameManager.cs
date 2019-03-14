@@ -32,9 +32,11 @@ public class GameManager : MonoBehaviour
     public bool gameStarted;
     public GameObject DocumentPrefab;
     public List<GameObject> DocumentsList = new List<GameObject>();
+    public Sprite[] StampApparences;
     public Sprite[] DocumentsApparence;
     public GameObject NextDocument;
     public int actualDocumentIndex;
+    public int scorePerDoc = 100;
 
     public Vector2 valuesOfDocTypeEnum = new Vector2(1, 3);     // Encadre les elements dans lesquels on peut piocher les documents (permet une progression)
     public Vector2 valuesOfStampTypeEnum = new Vector2(1, 4);   // Encadre les elements dans lesquels on peut piocher les types de tampons (permet une progression)
@@ -61,7 +63,7 @@ public class GameManager : MonoBehaviour
         float height = Screen.height;
         screenRatio = width / height;
 
-        float resizingScreenX = width / canvasRectTransform.rect.width;      // 1080 = canvas width => plus facile que de récup le rect transform
+        float resizingScreenX = width / canvasRectTransform.rect.width;      
         float resizingScreenY = height / canvasRectTransform.rect.height;
 
         resizingValues = new Vector2(resizingScreenX, resizingScreenY);
@@ -95,7 +97,8 @@ public class GameManager : MonoBehaviour
     {
         print("valid Stamping");
 
-        ScoreManager.instance.IncreaseScore(1);
+        ScoreManager.instance.OnDocumentComplete(scorePerDoc);
+
 
         StartCoroutine(TransitionToNewDocument());
 

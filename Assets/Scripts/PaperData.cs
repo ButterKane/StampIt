@@ -11,6 +11,7 @@ public class PaperData : MonoBehaviour
     public int stampsToValidate;
     public int stampsValidated;
     public bool documentDone;
+    public int localScore;
 
     void Awake()
     {
@@ -41,10 +42,7 @@ public class PaperData : MonoBehaviour
 
         for (int i = 0; i < numberOfStampsToInstantiate; i++)
         {
-            //stampingZonesLocations[i] = SetNewStampingZoneLocation();
-            StartCoroutine(SetNewLocations());
-            //stampingZonesLocations.Add(SetNewStampingZoneLocation());
-            //StampingZoneManager.instance.GenerateNewStampingZone(stampingZonesLocations[i], gameObject); // on génère les zone de tamponnages à chaque nouvelle position, enfants du document
+            SetNewLocations();
         }
 
     }
@@ -76,7 +74,7 @@ public class PaperData : MonoBehaviour
 
     }
 
-    public IEnumerator SetNewLocations()
+    public void SetNewLocations()
     {
         Vector3 newCoordinates = CreateNewCoordinates();
 
@@ -87,7 +85,6 @@ public class PaperData : MonoBehaviour
             while (CheckIfOverlapping(newCoordinates))
             {
                 newCoordinates = CreateNewCoordinates();
-                yield return null;
                 print("rerolling the coordinates");
             }
             newPosition = new Vector3(newCoordinates.x, newCoordinates.y, 100);

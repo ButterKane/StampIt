@@ -55,12 +55,17 @@ MonoBehaviour:
   DocumentPrefab: {fileID: 3404478145758842937, guid: 3bb073940a73a87429bcdac4f37ce69a,
     type: 3}
   DocumentsList: []
+  StampApparences:
+  - {fileID: 21300000, guid: 55db32def8088da4390e7d4114c0c98c, type: 3}
+  - {fileID: 21300000, guid: d15249ff870a73248a0a3c25f1217941, type: 3}
+  - {fileID: 21300000, guid: 19b409c513a3ddf43824ea7880445b9e, type: 3}
   DocumentsApparence:
   - {fileID: 21300000, guid: 3a4ee345eb1732348a6237d9b739821e, type: 3}
   - {fileID: 21300000, guid: c37ff35bc2ec7ba4dad678a61881b239, type: 3}
   - {fileID: 21300000, guid: a4666d41ebc73cd4e96a2a6af099d13d, type: 3}
   NextDocument: {fileID: 0}
   actualDocumentIndex: 0
+  scorePerDoc: 100
   valuesOfDocTypeEnum: {x: 1, y: 3}
   valuesOfStampTypeEnum: {x: 1, y: 4}
 --- !u!114 &2282825994261748799
@@ -92,6 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  is_in_fast_time: 0
+  fever_amount: 0
+  fever_amount_limit: 6
+  actual_score_multiplier: 1
 --- !u!114 &605330372
 MonoBehaviour:
   m_ObjectHideFlags: 0
