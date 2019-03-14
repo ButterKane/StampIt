@@ -36,6 +36,12 @@ public class PaperData : MonoBehaviour
         }
     }
 
+    public void OnClickDocument()
+    { 
+        ScoreManager.instance.fever_amount = 0;
+        ScoreManager.instance.StopFeverFeedback();
+        ScoreManager.instance.score -= GameManager.instance.scorePerDoc;
+    }
 
     public void GenerateNewDocument()
     {
