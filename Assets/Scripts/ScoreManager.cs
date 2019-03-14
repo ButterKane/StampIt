@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum enum_LevelRating
 {
@@ -25,13 +27,17 @@ public class ScoreManager : MonoBehaviour
     public  int                     fever_amount_limit                      = 6;
     public  int                     actual_score_multiplier                 = 1;
     public  int                     maximum_score_obtainable                ;
-    public GameObject fever_fx;
+    public  GameObject              fever_fx                                ;
 
 [Space(10)][Header("Gameplay")]
     public  float                   fast_time_duration_per_stampZone        = 0.50f;
     public  float                   rating_min_percent_great                = 0.20f;
     public  float                   rating_min_percent_super                = 0.35f;
     public  float                   rating_min_percent_perfect              = 0.70f;
+
+[Space(10)][Header("References")]
+    public  TextMeshProUGUI         txt_score_display                       ;
+    public  TextMeshProUGUI         txt_fever_display                       ;
 
 // = = =
 
@@ -46,6 +52,7 @@ public class ScoreManager : MonoBehaviour
             {
                 fever_amount = value;
                 ApplyFeverChange();
+                txt_fever_display.text = "x" + value.ToString();
             }
             else
             {
@@ -68,6 +75,12 @@ public class ScoreManager : MonoBehaviour
         {
             Destroy(this);
         }
+    }
+
+    void Start()
+    {
+        txt_score_display.text = score.ToString();
+        txt_fever_display.text = "0";
     }
 
     // DEBUG UPDATE
@@ -94,6 +107,7 @@ public class ScoreManager : MonoBehaviour
     public void IncreaseScore(int addedPoints)
     {
         score += addedPoints;
+        txt_score_display.text = score.ToString();
     }
 
     /// <summary>
@@ -102,6 +116,7 @@ public class ScoreManager : MonoBehaviour
     public void ResetScore()
     {
         score = 0;
+        txt_score_display.text = score.ToString();
         return;
     }
 
@@ -124,7 +139,7 @@ public class ScoreManager : MonoBehaviour
         if(is_in_fast_time == true)
         {
             IncreaseFever();
-            fever_fx = Instantiate(GameManager.instance.FeverFX, GameManager.instance.canvas.transform);
+            // fever_fx = Instantiate(GameManager.instance.FeverFX, GameManager.instance.canvas.transform);
         }
         return;
     }
@@ -195,6 +210,7 @@ public class ScoreManager : MonoBehaviour
     public void StartFeverFeedback()
     {
         Debug.Log("Entering FEVER time");
+        txt_fever_display.enabled = true;
         
         return;
     }
@@ -205,6 +221,8 @@ public class ScoreManager : MonoBehaviour
     public void StopFeverFeedback()
     {
         Debug.Log("Quitting FEVER time");
+        txt_fever_display.enabled = false;
+
         return;
     }
 
@@ -236,7 +254,7 @@ public class ScoreManager : MonoBehaviour
     public float GetActualDocumentFastTimeDuration()
     {
         float calculated_value;
-        calculated_value = 1 + ( GameManager.instance.DocumentsList[GameManager.instance.actualDocumentIndex].GetComponent<PaperData>().documentData.stampZonesToValidate * fast_time_duration_per_stampZone );
+        calculated_value = 1.50f + ( GameManager.instance.DocumentsList[GameManager.instance.actualDocumentIndex].GetComponent<PaperData>().documentData.stampZonesToValidate * fast_time_duration_per_stampZone );
         
         return calculated_value;
     }
