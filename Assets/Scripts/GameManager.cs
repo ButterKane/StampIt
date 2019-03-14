@@ -17,7 +17,15 @@ public enum documentsTypes
     ThreeStampZone
 }
 
-
+public enum enum_GameState
+{
+    startmenu,
+    levelselection,
+    ingame,
+    paused,
+    success,
+    failure
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -45,6 +53,9 @@ public class GameManager : MonoBehaviour
     public Vector2 valuesOfStampTypeEnum = new Vector2(1, 4);   // Encadre les elements dans lesquels on peut piocher les types de tampons (permet une progression)
 
     private Vector3 locationForActualDoc = new Vector3(0, -280, 0);
+
+    public  int                 remaining_documents_amount      = 1;
+    public  enum_GameState      game_state                      ;
 
     // ====== MONOBEHAVIOUR METHODS =======//
 
@@ -130,6 +141,39 @@ public class GameManager : MonoBehaviour
 
         NextDocument = (Instantiate(DocumentPrefabs[2], canvas.transform));
         NextDocument.transform.position = new Vector3(NextDocument.transform.position.x - (9.7f * screenRatio), NextDocument.transform.position.y - (6f * screenRatio), NextDocument.transform.position.z);
+    }
+
+    /// <summary>
+    /// Starts game with the datas from Level Manager's actual level index.
+    /// </summary>
+    public void StartLevel()
+    {
+        InitialiseLevel();
+
+        game_state = enum_GameState.ingame;
+
+        return;
+    }
+
+    /// <summary>
+    /// Initialises game state with the datas from Level Manager's actual level index.
+    /// </summary>
+    public void InitialiseLevel()
+    {
+        // nbr of documents
+        remaining_documents_amount = LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].nbr_of_documents;
+
+
+        return;
+    }
+
+    /// <summary>
+    /// Called when the player fails a stamp.
+    /// </summary>
+    public void OnStampFailed()
+    {
+
+        return;
     }
 
 

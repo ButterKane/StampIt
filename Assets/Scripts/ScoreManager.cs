@@ -96,6 +96,15 @@ public class ScoreManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Resets the player score.
+    /// </summary>
+    public void ResetScore()
+    {
+        score = 0;
+        return;
+    }
+
+    /// <summary>
     /// Increases Fever value by 1.
     /// </summary>
     public void IncreaseFever()
