@@ -18,6 +18,7 @@ public class so_level_data : ScriptableObject
     [Space(5)]
     public  int                                 nbr_of_documents            = 1;
     public  List<GameObject>                    level_document_types        = new List<GameObject>();
+    public  bool                                is_unlocked                   ;
 
 // = = =
 

@@ -48,13 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf041d190f604434d841cbc2babc38bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lockedLevel: {fileID: 2662480995824427827, guid: e463d5816150c54449bff90971bf10fd,
-    type: 3}
-  USALevel: {fileID: 6044674545140865651, guid: 3871f240bc0faed4398b343ee29f1a98,
-    type: 3}
-  englandLevel: {fileID: 6390226018757413317, guid: 8b1208dc14fdab946b9bc947e2ccf7cc,
-    type: 3}
-  chinaLevel: {fileID: 9058368988479096104, guid: 80997c3ffb4c8c6498517bbcb70b883c,
+  lockedLevelSprite: {fileID: 21300000, guid: 81657ad75808f0e47beaa112b8e80eca, type: 3}
+  iconPrefab: {fileID: 6044674545140865651, guid: 3871f240bc0faed4398b343ee29f1a98,
     type: 3}
 --- !u!1 &5046225998467840924
 GameObject:
