@@ -27,13 +27,16 @@ public class GameManager : MonoBehaviour
     public Canvas canvas;
     public RectTransform canvasRectTransform;
 
+    public Sprite[] StampApparences;
+    public Sprite[] StampZoneApparences; // à ranger: invalid, 1 tampon, 2 tampons, 3 tampons
+    public Sprite[] DocumentsApparence;
+
     public float screenRatio;
     public Vector2 resizingValues;
     public bool gameStarted;
-    public GameObject DocumentPrefab;
+    public List<GameObject> DocumentPrefabs;
     public List<GameObject> DocumentsList = new List<GameObject>();
-    public Sprite[] StampApparences;
-    public Sprite[] DocumentsApparence;
+    
     public GameObject NextDocument;
     public int actualDocumentIndex;
     public int scorePerDoc = 100;
@@ -76,17 +79,17 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        DocumentsList.Add(Instantiate(DocumentPrefab, canvas.transform));
-        NextDocument = (Instantiate(DocumentPrefab, canvas.transform));
+        DocumentsList.Add(Instantiate(DocumentPrefabs[0], canvas.transform));
+        NextDocument = (Instantiate(DocumentPrefabs[1], canvas.transform));
         NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DocumentsList.Add(Instantiate(DocumentPrefab, canvas.transform));
-        }
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    DocumentsList.Add(Instantiate(DocumentPrefabs[2], canvas.transform));
+        //}
     }
     // ====== CLASS METHODS =======//
 
@@ -132,7 +135,7 @@ public class GameManager : MonoBehaviour
         DocumentsList.Add(NextDocument);
         actualDocumentIndex++;
 
-        NextDocument = (Instantiate(DocumentPrefab, canvas.transform));
+        NextDocument = (Instantiate(DocumentPrefabs[2], canvas.transform));
         NextDocument.transform.position = NextDocument.transform.position - Vector3.right * 6;
     }
 

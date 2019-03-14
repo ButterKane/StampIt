@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3548643458756273475
+--- !u!1 &5079816749037039640
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,52 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3548643458756273472}
-  - component: {fileID: 3548643458756273487}
-  - component: {fileID: 3548643458756273486}
-  - component: {fileID: 3548643458756273473}
-  - component: {fileID: 1636494618200267985}
-  m_Layer: 9
-  m_Name: StampingZone
+  - component: {fileID: 3529211386640017009}
+  - component: {fileID: 153729172356446706}
+  - component: {fileID: 5137279473531300928}
+  - component: {fileID: 6967888026411133171}
+  - component: {fileID: 430968291154913459}
+  m_Layer: 5
+  m_Name: YellowDocument
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3548643458756273472
+--- !u!224 &3529211386640017009
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3548643458756273475}
+  m_GameObject: {fileID: 5079816749037039640}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.86323, y: 0.86323, z: 0.86323}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 300, y: 300}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -181}
+  m_SizeDelta: {x: 1260, y: 1782}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3548643458756273487
+--- !u!222 &153729172356446706
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3548643458756273475}
+  m_GameObject: {fileID: 5079816749037039640}
   m_CullTransparentMesh: 0
---- !u!114 &3548643458756273486
+--- !u!114 &5137279473531300928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3548643458756273475}
+  m_GameObject: {fileID: 5079816749037039640}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 7a52be63df6687146962c334648ccca7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -76,13 +76,13 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
---- !u!114 &3548643458756273473
+--- !u!114 &6967888026411133171
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3548643458756273475}
+  m_GameObject: {fileID: 5079816749037039640}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
@@ -99,7 +99,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -112,44 +112,55 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 3548643458756273486}
+  m_TargetGraphic: {fileID: 5137279473531300928}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1636494618200267985}
-        m_MethodName: OnStamping
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1636494618200267985
+--- !u!114 &430968291154913459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3548643458756273475}
+  m_GameObject: {fileID: 5079816749037039640}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18781439ceb1c4d41877c55817c2ef67, type: 3}
+  m_Script: {fileID: 11500000, guid: 4070edfc32cb9724f809a8098a684a1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StampData:
-    nbOfStampsNeeded: 0
-    nbOfStampsDone: 0
-    linked_document_class:
-      numberOfStampsToInstantiate: 0
-      stampZonesToValidate: 0
-      stampZonesValidated: 0
-      DocumentApparence: {fileID: 0}
-      stampingZonesLocations: []
-      stampZonesToGenerate: []
-      localScore: 0
-    StampZoneApparence: {fileID: 0}
+  documentDone: 0
+  documentData:
+    numberOfStampsToInstantiate: 2
+    stampZonesToValidate: 2
+    stampZonesValidated: 0
+    DocumentApparence: {fileID: 21300000, guid: c37ff35bc2ec7ba4dad678a61881b239,
+      type: 3}
+    stampingZonesLocations: []
+    stampZonesToGenerate:
+    - nbOfStampsNeeded: 1
+      nbOfStampsDone: 0
+      linked_document_class:
+        numberOfStampsToInstantiate: 0
+        stampZonesToValidate: 0
+        stampZonesValidated: 0
+        DocumentApparence: {fileID: 0}
+        stampingZonesLocations: []
+        stampZonesToGenerate: []
+        localScore: 0
+      StampZoneApparence: {fileID: 21300000, guid: a1c198a5733582e429799dd35fe018e4,
+        type: 3}
+    - nbOfStampsNeeded: 0
+      nbOfStampsDone: 0
+      linked_document_class:
+        numberOfStampsToInstantiate: 0
+        stampZonesToValidate: 0
+        stampZonesValidated: 0
+        DocumentApparence: {fileID: 0}
+        stampingZonesLocations: []
+        stampZonesToGenerate: []
+        localScore: 0
+      StampZoneApparence: {fileID: 21300000, guid: a1c198a5733582e429799dd35fe018e4,
+        type: 3}
+    localScore: 0

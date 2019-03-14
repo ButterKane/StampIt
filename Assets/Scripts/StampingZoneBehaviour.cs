@@ -1,30 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class StampingZoneBehaviour : MonoBehaviour
 {
-    public int nbOfStampsNeeded;
-    public int nbOfStampsDone;
-    public bool isStampForbidden;
+    public StampClass StampData;
 
     private void Awake()
     {
-        nbOfStampsDone = 0;
+        StampData.nbOfStampsDone = 0;
     }
 
-    public void OnStamping()
+    public void SetZoneApparence()
     {
-        if(isStampForbidden)
+        gameObject.GetComponent<Image>().sprite = StampData.StampZoneApparence;
+    }
+
+        public void OnStamping()
+    {
+        if (StampData.nbOfStampsNeeded == 0)
         {
             GameManager.instance.InvalidStamping();// fail
         }
         else
         {
-            nbOfStampsDone++;
-            if (nbOfStampsDone == nbOfStampsNeeded)
+            StampData.nbOfStampsDone++;
+
+            if (StampData.nbOfStampsDone == StampData.nbOfStampsNeeded)
             {
-                GetComponentInParent<PaperData>().stampsValidated++;
+                GetComponentInParent<PaperData>().documentData.stampZonesValidated++;
 
             }
 

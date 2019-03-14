@@ -263,6 +263,72 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &543683371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 543683374}
+  - component: {fileID: 543683373}
+  - component: {fileID: 543683372}
+  m_Layer: 0
+  m_Name: EventSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &543683372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543683371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1077351063, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_HorizontalAxis: Horizontal
+  m_VerticalAxis: Vertical
+  m_SubmitButton: Submit
+  m_CancelButton: Cancel
+  m_InputActionsPerSecond: 10
+  m_RepeatDelay: 0.5
+  m_ForceModuleActive: 0
+--- !u!114 &543683373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543683371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -619905303, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 0}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
+--- !u!4 &543683374
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 543683371}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1791608238
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,20 +424,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 7931966454211859031}
   canvasRectTransform: {fileID: 0}
-  screenRatio: 0
-  resizingValues: {x: 0, y: 0}
-  gameStarted: 0
-  DocumentPrefab: {fileID: 3404478145758842937, guid: 3bb073940a73a87429bcdac4f37ce69a,
-    type: 3}
-  DocumentsList: []
   StampApparences:
   - {fileID: 21300000, guid: 55db32def8088da4390e7d4114c0c98c, type: 3}
   - {fileID: 21300000, guid: d15249ff870a73248a0a3c25f1217941, type: 3}
   - {fileID: 21300000, guid: 19b409c513a3ddf43824ea7880445b9e, type: 3}
+  StampZoneApparences:
+  - {fileID: 21300000, guid: b7ed915a7d86d134c960f7f46855dbc2, type: 3}
+  - {fileID: 21300000, guid: a50c0c36517eb2949a9aca2ad1ba19a4, type: 3}
+  - {fileID: 21300000, guid: a1c198a5733582e429799dd35fe018e4, type: 3}
+  - {fileID: 21300000, guid: 61aca1f813450ea4c8c37c0ee19a8edd, type: 3}
   DocumentsApparence:
   - {fileID: 21300000, guid: 3a4ee345eb1732348a6237d9b739821e, type: 3}
   - {fileID: 21300000, guid: c37ff35bc2ec7ba4dad678a61881b239, type: 3}
   - {fileID: 21300000, guid: a4666d41ebc73cd4e96a2a6af099d13d, type: 3}
+  screenRatio: 0
+  resizingValues: {x: 0, y: 0}
+  gameStarted: 0
+  DocumentPrefabs:
+  - {fileID: 3792089942222128533, guid: 4a998be6f89faa64d8f8225ded6bc696, type: 3}
+  - {fileID: 5079816749037039640, guid: d1d3f7df131967f41af6d2d2bb3592c9, type: 3}
+  - {fileID: 4906775287425238744, guid: c52ecbbdc5c35494eb8bc69230efd49d, type: 3}
+  DocumentsList: []
   NextDocument: {fileID: 0}
   actualDocumentIndex: 0
   scorePerDoc: 100

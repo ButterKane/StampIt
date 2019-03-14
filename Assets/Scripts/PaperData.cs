@@ -6,25 +6,24 @@ using UnityEngine.UI;
 
 public class PaperData : MonoBehaviour
 {
-    int numberOfStampsToInstantiate;
-    public List<Vector3> stampingZonesLocations;
-    public int stampsToValidate;
-    public int stampsValidated;
     public bool documentDone;
-    public int localScore;
+
+    public DocumentClass documentData;
 
     void Awake()
     {
-        stampingZonesLocations = new List<Vector3>();
+        documentData.stampingZonesLocations = new List<Vector3>();
         gameObject.transform.localScale = gameObject.transform.localScale / GameManager.instance.resizingValues;
-        stampsValidated = 0;
+        documentData.stampZonesValidated = 0;
+
+        this.gameObject.GetComponent<Image>().sprite = documentData.DocumentApparence;
 
         GenerateNewDocument();
     }
 
     private void Update()
     {
-        if (stampsValidated == stampsToValidate && !documentDone)
+        if (documentData.stampZonesValidated == documentData.stampZonesToValidate && !documentDone)
         {
             GameManager.instance.ValidStamping();
             documentDone = true;
@@ -34,53 +33,25 @@ public class PaperData : MonoBehaviour
 
     public void GenerateNewDocument()
     {
-        numberOfStampsToInstantiate = 0;
 
-        SetNumberOfStampsNeeded((documentsTypes)Random.Range(GameManager.instance.valuesOfDocTypeEnum.x-1, GameManager.instance.valuesOfDocTypeEnum.y)); //between 0 and 2
-
-        Debug.Log("TailleArrayPositions = " + stampingZonesLocations.Count);
-
-        for (int i = 0; i < numberOfStampsToInstantiate; i++)
+        for (int i = 0; i < documentData.numberOfStampsToInstantiate; i++)
         {
-            SetNewLocations();
+            Vector3 newPosition = SetNewLocations();
+            documentData.stampingZonesLocations.Add(newPosition);
+
+
+            StampingZoneManager.instance.GenerateNewStampingZone(newPosition, this, i); // on génère les zone de tamponnages à chaque nouvelle position, enfants du document
         }
 
     }
 
-    public void SetNumberOfStampsNeeded(documentsTypes docType)
-    {
-        switch ((int)docType)
-        {
-            case 0:
-                //print("doc Type is OneStamp");
-                numberOfStampsToInstantiate = 1;
-                gameObject.GetComponent<Image>().sprite = GameManager.instance.DocumentsApparence[0];
-                break;
-            case 1:
-                //print("doc Type is TwoStamps");
-                numberOfStampsToInstantiate = 2;
-                gameObject.GetComponent<Image>().sprite = GameManager.instance.DocumentsApparence[1];
-                break;
-            case 2:
-                //print("doc Type is ThreeStamps");
-                numberOfStampsToInstantiate = 3;
-                gameObject.GetComponent<Image>().sprite = GameManager.instance.DocumentsApparence[2];
-                break;
-
-            default:
-                print("incorrect document, please check");
-                break;
-        }
-
-    }
-
-    public void SetNewLocations()
+    public Vector3 SetNewLocations()
     {
         Vector3 newCoordinates = CreateNewCoordinates();
 
         Vector3 newPosition = Vector3.zero;
 
-        if (stampingZonesLocations.Count > 0)
+        if (documentData.stampingZonesLocations.Count > 0)
         {
             while (CheckIfOverlapping(newCoordinates))
             {
@@ -88,15 +59,12 @@ public class PaperData : MonoBehaviour
                 print("rerolling the coordinates");
             }
             newPosition = new Vector3(newCoordinates.x, newCoordinates.y, 100);
-
         }
         else
         {
             newPosition = new Vector3(newCoordinates.x, newCoordinates.y, 100);
         }
-
-        stampingZonesLocations.Add(newPosition);
-        StampingZoneManager.instance.GenerateNewStampingZone(stampingZonesLocations[stampingZonesLocations.Count-1], gameObject); // on génère les zone de tamponnages à chaque nouvelle position, enfants du document
+        return newPosition;
     }
 
 
@@ -117,11 +85,11 @@ public class PaperData : MonoBehaviour
     {
         int nbOfValidations = 0;
 
-        for (int i = 0; i < stampingZonesLocations.Count; i++)
+        for (int i = 0; i < documentData.stampingZonesLocations.Count; i++)
         {
-            if (newCoordinates.x <= stampingZonesLocations[i].x + 1f && newCoordinates.x >= stampingZonesLocations[i].x - 1f)               // Les 1 sont des valeurs en dur, pratiques
+            if (newCoordinates.x <= documentData.stampingZonesLocations[i].x + 1f && newCoordinates.x >= documentData.stampingZonesLocations[i].x - 1f)               // Les 1 sont des valeurs en dur, pratiques
             {
-                if (newCoordinates.y <= stampingZonesLocations[i].y + 1f && newCoordinates.y >= stampingZonesLocations[i].y - 1f)
+                if (newCoordinates.y <= documentData.stampingZonesLocations[i].y + 1f && newCoordinates.y >= documentData.stampingZonesLocations[i].y - 1f)
                 {
                     break;
                 }
@@ -133,7 +101,7 @@ public class PaperData : MonoBehaviour
             }
         }
 
-        if (nbOfValidations == stampingZonesLocations.Count)
+        if (nbOfValidations == documentData.stampingZonesLocations.Count)
         {
             return false;
         }
