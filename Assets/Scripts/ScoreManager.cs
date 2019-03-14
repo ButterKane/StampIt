@@ -81,6 +81,10 @@ public class ScoreManager : MonoBehaviour
     {
         txt_score_display.text = score.ToString();
         txt_fever_display.text = "0";
+
+        fever_fx = Instantiate(GameManager.instance.FeverFX, GameManager.instance.canvas.transform);
+        fever_fx.transform.position = new Vector3(fever_fx.transform.position.x, fever_fx.transform.position.y-600*GameManager.instance.screenRatio* GameManager.instance.canvasRectTransform.localScale.y, fever_fx.transform.position.z - 10 * GameManager.instance.screenRatio * GameManager.instance.canvasRectTransform.localScale.z);
+        fever_fx.SetActive(false);
     }
 
     // DEBUG UPDATE
@@ -210,6 +214,7 @@ public class ScoreManager : MonoBehaviour
     public void StartFeverFeedback()
     {
         Debug.Log("Entering FEVER time");
+        fever_fx.SetActive(true); 
         txt_fever_display.enabled = true;
         
         return;
@@ -221,6 +226,7 @@ public class ScoreManager : MonoBehaviour
     public void StopFeverFeedback()
     {
         Debug.Log("Quitting FEVER time");
+        fever_fx.SetActive(false);
         txt_fever_display.enabled = false;
 
         return;

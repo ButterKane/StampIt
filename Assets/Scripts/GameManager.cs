@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public Canvas canvas;
     public RectTransform canvasRectTransform;
 
+    public GameObject TapFX;
     public GameObject FeverFX;
     public GameObject FastFX;
     public Sprite[] StampApparences;
@@ -49,6 +50,7 @@ public class GameManager : MonoBehaviour
 
     List<GameObject> listOfDocsForLevel;
 
+    private bool isLastDocument;
 
     public GameObject NextDocument;
     public int actualDocumentIndex;
@@ -127,7 +129,12 @@ public class GameManager : MonoBehaviour
         print("valid Stamping");
 
         ScoreManager.instance.OnDocumentComplete(scorePerDoc);
+        
         StartCoroutine(TransitionToNewDocument());
+        if (isLastDocument)
+        {
+            GameEnded();
+        }
 
     }
     public void InvalidStamping()
@@ -167,20 +174,23 @@ public class GameManager : MonoBehaviour
         {
             NextDocument.transform.position = endPosition2;
             DocumentsList.Add(NextDocument);
+            ScoreManager.instance.StartDocumentFastTime();
             NextDocument = null;
         }
+
         remaining_documents_amount--;
         actualDocumentIndex++;
 
-        if (remaining_documents_amount > 0)
+        if (remaining_documents_amount > 1)
         {
             NextDocument = (Instantiate(DocumentPrefabs[Random.Range(0, listOfDocsForLevel.Count - 1)], canvas.transform));
             NextDocument.transform.position = new Vector3(NextDocument.transform.position.x - (9.7f * screenRatio), NextDocument.transform.position.y - (6f * screenRatio), NextDocument.transform.position.z);
         }
         else
         {
-            GameEnded();
+            isLastDocument = true;
         }
+        
     }
 
     /// <summary>
