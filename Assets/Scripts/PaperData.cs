@@ -10,10 +10,9 @@ public class PaperData : MonoBehaviour
     private RectTransform rect; 
     public DocumentClass documentData;
 
-    private Vector3 BoundHLLocation;
-    private Vector3 BoundHRLocation;
-    private Vector3 BoundBLLocation;
-    private Vector3 BoundBRLocation;
+    public Vector3 BoundHLLocation;
+    public Vector3 BoundHRLocation;
+    public Vector3 BoundBLLocation;
 
     void Awake()
     {
@@ -44,6 +43,7 @@ public class PaperData : MonoBehaviour
         for (int i = 0; i < documentData.numberOfStampsToInstantiate; i++)
         {
             Vector3 newPosition = SetNewLocations();
+            //StartCoroutine(SetNewLocations());
             documentData.stampingZonesLocations.Add(newPosition);
 
 
@@ -75,10 +75,11 @@ public class PaperData : MonoBehaviour
     }
 
 
+
     public Vector3 CreateNewCoordinates()
     {
         float tempNewX = Random.Range(BoundHLLocation.x, BoundHRLocation.x);
-        float tempNewY = Random.Range(BoundBLLocation.y, BoundBRLocation.y);
+        float tempNewY = Random.Range(BoundBLLocation.y, BoundHLLocation.y);
 
         //float tempNewX = Random.Range((rect.rect.width / 1080) * 200f * GameManager.instance.screenRatio, (((float)Screen.width - ((float)Screen.width / 1080) * 100f)) * GameManager.instance.screenRatio);
         //float tempNewY = Random.Range(((float)Screen.height / 1920) * 200f * GameManager.instance.screenRatio, ((float)Screen.height - (((float)Screen.height / 3f) * 1f)) * GameManager.instance.screenRatio);
@@ -132,14 +133,36 @@ public class PaperData : MonoBehaviour
         firstChild.transform.localScale = new Vector3(GameManager.instance.screenRatio, GameManager.instance.screenRatio, GameManager.instance.screenRatio);
 
         GameObject BoundHL = firstChild.transform.GetChild(0).gameObject;
-        GameObject BoundHR = firstChild.transform.GetChild(0).gameObject;
-        GameObject BoundBL = firstChild.transform.GetChild(0).gameObject;
-        GameObject BoundBR = firstChild.transform.GetChild(0).gameObject;
+        GameObject BoundHR = firstChild.transform.GetChild(1).gameObject;
+        GameObject BoundBL = firstChild.transform.GetChild(2).gameObject;
 
         BoundHLLocation = BoundHL.GetComponent<RectTransform>().transform.position;
         BoundHRLocation = BoundHR.GetComponent<RectTransform>().transform.position;
         BoundBLLocation = BoundBL.GetComponent<RectTransform>().transform.position;
-        BoundBRLocation = BoundBR.GetComponent<RectTransform>().transform.position;
+
     }
+
+
+    //public IEnumerator SetNewLocations()
+    //{
+    //    Vector3 newCoordinates = CreateNewCoordinates();
+
+    //    Vector3 newPosition = Vector3.zero;
+
+    //    if (documentData.stampingZonesLocations.Count > 0)
+    //    {
+    //        while (CheckIfOverlapping(newCoordinates))
+    //        {
+    //            newCoordinates = CreateNewCoordinates();
+    //            print("rerolling the coordinates");
+    //            yield return null;
+    //        }
+    //        newPosition = new Vector3(newCoordinates.x, newCoordinates.y, 100);
+    //    }
+    //    else
+    //    {
+    //        newPosition = new Vector3(newCoordinates.x, newCoordinates.y, 100);
+    //    }
+    //}
 
 }
