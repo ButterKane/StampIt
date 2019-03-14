@@ -9,6 +9,11 @@ public class SuccessScreenManager : MonoBehaviour
 
 
     public List<GameObject> successScreenElements;
+    public GameObject successStamp;
+    public Sprite goodSprite;
+    public Sprite greatSprite;
+    public Sprite superSprite;
+    public Sprite perfectSprite;
     public Image fadeRenderer;
     public Text text;
     public float fadeMaxAlpha = 120f;
@@ -28,7 +33,7 @@ public class SuccessScreenManager : MonoBehaviour
 
 
 
-        public void OnSuccess(int Score)
+    public void OnSuccess(int Score)
     {
         for (int i = 0; i < successScreenElements.Count; i++)
         {
@@ -52,6 +57,24 @@ public class SuccessScreenManager : MonoBehaviour
             fadeRenderer.color = new Color(0, 0, 0, ((time - timeBeforeFade) / timeToFade) * (fadeMaxAlpha / 255f));
             time += Time.deltaTime;
             yield return null;
+        }
+        successStamp.SetActive(true);
+        enum_LevelRating levelRating = GameManager.instance.GetComponent<ScoreManager>().CalculateLevelRating();
+        if (levelRating == enum_LevelRating.Good)
+        {
+            successStamp.GetComponent<Image>().sprite = goodSprite;
+        }
+        if (levelRating == enum_LevelRating.Great)
+        {
+            successStamp.GetComponent<Image>().sprite = greatSprite;
+        }
+        if (levelRating == enum_LevelRating.Super)
+        {
+            successStamp.GetComponent<Image>().sprite = superSprite;
+        }
+        if (levelRating == enum_LevelRating.Perfect)
+        {
+            successStamp.GetComponent<Image>().sprite = perfectSprite;
         }
         text.color = new Color(1, 1, 1, 1);
         fadeRenderer.color = new Color(0, 0, 0, fadeMaxAlpha / 255f);
