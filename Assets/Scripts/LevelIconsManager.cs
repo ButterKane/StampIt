@@ -10,11 +10,6 @@ public class LevelIconsManager : MonoBehaviour
     public GameObject iconPrefab;
     List<GameObject> iconsList = new List<GameObject>();
 
-    void Start()
-    {
-        SpawnIcons();
-    }
-
     
     void Update()
     {
@@ -23,6 +18,16 @@ public class LevelIconsManager : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             gameObject.GetComponent<RectTransform>().localPosition += new Vector3(0, touch.deltaPosition.y, 0);
         }*/
+    }
+
+    private void OnEnable()
+    {
+        SpawnIcons();
+    }
+
+    private void OnDisable()
+    {
+        ClearIcons();
     }
 
     void SpawnIcons()
@@ -51,8 +56,18 @@ public class LevelIconsManager : MonoBehaviour
             else
             {
                 instance.GetComponent<Image>().sprite = lockedLevelSprite;
+                instance.GetComponent<Button>().interactable = false;
             }
             lastSprite = levels.Value.level_icon;
         }
+    }
+
+    public void ClearIcons()
+    {
+        foreach (GameObject icon in iconsList)
+        {
+            Destroy(icon);
+        }
+        iconsList.Clear();
     }
 }

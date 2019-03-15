@@ -58,6 +58,7 @@ public class IconFadeManager : MonoBehaviour
     public void LoadLevel()
     {
         transform.parent.gameObject.transform.parent.gameObject.SetActive(false);
+        transform.parent.gameObject.transform.parent.gameObject.GetComponent<LevelIconsManager>().ClearIcons();
         GameManager.instance.StartLevel(levelID);
     }
 }
