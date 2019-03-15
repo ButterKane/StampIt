@@ -33,8 +33,6 @@ public class SuccessScreenManager : MonoBehaviour
         }
     }
 
-
-
     public void OnSuccess(int Score)
     {
         for (int i = 0; i < successScreenElements.Count; i++)
@@ -48,6 +46,8 @@ public class SuccessScreenManager : MonoBehaviour
     IEnumerator SuccessFade()
     {
         float time = 0f;
+        fadeRenderer.color = new Color(0, 0, 0, 0);
+        text.color = new Color(1, 1, 1, 0);
         while (time < timeBeforeFade)
         {
             time += Time.deltaTime;
@@ -66,15 +66,15 @@ public class SuccessScreenManager : MonoBehaviour
         {
             successStamp.GetComponent<Image>().sprite = goodSprite;
         }
-        if (levelRating == enum_LevelRating.Great)
+        else if (levelRating == enum_LevelRating.Great)
         {
             successStamp.GetComponent<Image>().sprite = greatSprite;
         }
-        if (levelRating == enum_LevelRating.Super)
+        else if (levelRating == enum_LevelRating.Super)
         {
             successStamp.GetComponent<Image>().sprite = superSprite;
         }
-        if (levelRating == enum_LevelRating.Perfect)
+        else if (levelRating == enum_LevelRating.Perfect)
         {
             successStamp.GetComponent<Image>().sprite = perfectSprite;
         }
@@ -82,5 +82,16 @@ public class SuccessScreenManager : MonoBehaviour
         fadeRenderer.color = new Color(0, 0, 0, fadeMaxAlpha / 255f);
         Nextlevel.SetActive(true);
         LevelsButton.SetActive(true);
+    }
+
+    public void ResetSuccessScreen()
+    {
+        for (int i = 0; i < successScreenElements.Count; i++)
+        {
+            successScreenElements[i].SetActive(false);
+        }
+        successStamp.SetActive(false);
+        Nextlevel.SetActive(false);
+        LevelsButton.SetActive(false);
     }
 }
