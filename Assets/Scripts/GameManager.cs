@@ -200,6 +200,10 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public void StartLevel(int index)
     {
+        SuccessScreenManager.instance.gameObject.SetActive(false);
+
+        LevelsManager.instance.level_data_dict[LevelsManager.instance.actual_level].is_unlocked = true;
+
         LevelsManager.instance.ResetLevelState();
         LevelsManager.instance.actual_level = index;
         InitialiseLevel();
@@ -247,7 +251,9 @@ public class GameManager : MonoBehaviour
 
     public void GameEnded()
     {
+        
         game_state = enum_GameState.success;
+        SuccessScreenManager.instance.gameObject.SetActive(true);
         SuccessScreenManager.instance.OnSuccess(ScoreManager.instance.score);
     }
 }
