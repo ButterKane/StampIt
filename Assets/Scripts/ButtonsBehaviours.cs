@@ -35,6 +35,7 @@ public class ButtonsBehaviours : MonoBehaviour
         GameManager.instance.Cleargame();
         LevelsManager.instance.MoveToNextLevel();
         GameManager.instance.StartLevel(LevelsManager.instance.actual_level);
+        SuccessScreenManager.instance.ResetSuccessScreen();
     }
 
     public void OnBackButtonClick()
