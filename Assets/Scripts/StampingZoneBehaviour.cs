@@ -20,6 +20,7 @@ public class StampingZoneBehaviour : MonoBehaviour
 
         public void OnStamping()
     {
+        Instantiate(GameManager.instance.ValidStampFX, gameObject.transform);
         if (StampData.nbOfStampsNeeded == 0)
         {
             ScoreManager.instance.fever_amount = 0;

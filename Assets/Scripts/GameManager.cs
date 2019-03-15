@@ -38,9 +38,11 @@ public class GameManager : MonoBehaviour
     public GameObject TapFX;
     public GameObject FeverFX;
     public GameObject FastFX;
+    public GameObject ValidStampFX;
     public Sprite[] StampApparences;
     public Sprite[] StampZoneApparences; // à ranger: invalid, 1 tampon, 2 tampons, 3 tampons
     public Sprite[] DocumentsApparence;
+
 
     public float screenRatio;
     public Vector2 resizingValues;
